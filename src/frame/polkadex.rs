@@ -31,7 +31,7 @@ use codec::{
 
 /// The subset of the `polkadex::Trait` that a client must implement.
 #[module]
-pub trait Trait: frame_system::Trait + pallet_generic_asset::Trait {}
+pub trait Trait: System + super::generic_asset::Trait {}
 
 /// Creates a new orderbook for given assets
 #[derive(Clone, Debug, PartialEq, Call, Encode)]
