@@ -35,6 +35,7 @@ pub mod session;
 pub mod staking;
 pub mod sudo;
 pub mod system;
+pub mod generic_asset;
 
 /// Store trait.
 pub trait Store<T>: Encode {

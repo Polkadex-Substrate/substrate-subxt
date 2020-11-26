@@ -34,7 +34,7 @@
     unused_parens,
     while_true,
     trivial_casts,
-    trivial_numeric_casts,
+    // trivial_numeric_casts,
     unused_extern_crates,
     clippy::all
 )]

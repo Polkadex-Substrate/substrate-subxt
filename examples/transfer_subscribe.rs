@@ -18,7 +18,7 @@ use sp_keyring::AccountKeyring;
 use substrate_subxt::{
     balances::{
         BalancesEventsDecoder,
-        TransferCallExt,
+        TransferCall,
         TransferEvent,
     },
     sp_core::Decode,

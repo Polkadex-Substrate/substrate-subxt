@@ -28,7 +28,6 @@ use sp_runtime::{
     OpaqueExtrinsic,
 };
 use sp_std::prelude::*;
-
 /// BABE marker struct
 #[derive(Copy, Clone, Debug, Default, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub struct Babe;
@@ -124,6 +123,7 @@ use crate::{
         system::System,
     },
 };
+use crate::frame::generic_asset::GenericAsset;
 
 /// Runtime trait.
 pub trait Runtime: System + Sized + Send + Sync + 'static {
@@ -210,6 +210,11 @@ impl Session for NodeTemplateRuntime {
 }
 
 impl Sudo for NodeTemplateRuntime {}
+
+impl GenericAsset for NodeTemplateRuntime {
+    type Balance = u128;
+    type AssetId = u32;
+}
 
 /// Concrete type definitions compatible with the node template, with the
 /// contracts pallet enabled.
