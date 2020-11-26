@@ -16,9 +16,6 @@
 
 //! Implements support for the polkadex module.
 
-use sp_runtime::traits::{AtLeast32Bit, MaybeSerialize, Member, AtLeast32BitUnsigned, MaybeSerializeDeserialize};
-use core::marker::PhantomData;
-use frame_support::Parameter;
 use frame_support::sp_std::fmt::Debug;
 use crate::frame::system::{
     System,
@@ -29,13 +26,44 @@ use codec::{
     Encode,
 };
 
+use crate::frame::generic_asset::GenericAsset;
+use crate::frame::generic_asset::GenericAssetEventsDecoder;
+
 /// The subset of the `polkadex::Trait` that a client must implement.
 #[module]
-pub trait Trait: System + super::generic_asset::Trait {}
+pub trait Polkadex: System  + GenericAsset{}
 
 /// Creates a new orderbook for given assets
 #[derive(Clone, Debug, PartialEq, Call, Encode)]
-pub struct RegisterNewOrderbookCall{
-    pub quote_asset_id: u32,
-    pub base_asset_id: u32
+pub struct RegisterNewOrderbookCall<T: Polkadex>{
+    /// Type representing Quote Asset
+    pub quote_asset_id: T::AssetId,
+    /// Type representing Base Asset
+    pub base_asset_id: T::AssetId
+}
+
+/// Submits a new trade
+#[derive(Clone, Debug, PartialEq, Call, Encode)]
+pub struct SubmitOrder<T: Polkadex>{
+    /// Trade Type
+    pub order_type: OrderType,
+    /// Market Id
+    pub trading_pair: T::Hash,
+    /// Trade Price
+    pub price: T::Balance,
+    /// Trade Quantity
+    pub quantity: T::Balance,
+}
+
+/// Available Order types
+#[derive(Clone, Debug, Eq, PartialEq, Encode, Decode)]
+pub enum OrderType {
+    /// Limit Buy Order
+    BidLimit,
+    /// Market Buy Order
+    BidMarket,
+    /// Limit Sell Order
+    AskLimit,
+    /// Market Sell Order
+    AskMarket,
 }

@@ -16,8 +16,7 @@
 
 //! Implements support for the pallet_generic_assets module.
 
-use sp_runtime::traits::{AtLeast32Bit, MaybeSerialize, Member, AtLeast32BitUnsigned, MaybeSerializeDeserialize};
-use core::marker::PhantomData;
+use sp_runtime::traits::{AtLeast32Bit, Member, AtLeast32BitUnsigned, MaybeSerializeDeserialize};
 use frame_support::Parameter;
 use frame_support::sp_std::fmt::Debug;
 use crate::frame::system::{

@@ -124,6 +124,7 @@ use crate::{
     },
 };
 use crate::frame::generic_asset::GenericAsset;
+use crate::frame::polkadex::Polkadex;
 
 /// Runtime trait.
 pub trait Runtime: System + Sized + Send + Sync + 'static {
@@ -215,6 +216,8 @@ impl GenericAsset for NodeTemplateRuntime {
     type Balance = u128;
     type AssetId = u32;
 }
+
+impl Polkadex for NodeTemplateRuntime{ }
 
 /// Concrete type definitions compatible with the node template, with the
 /// contracts pallet enabled.
