@@ -175,6 +175,14 @@ impl Contracts for DefaultNodeRuntime {}
 
 impl Sudo for DefaultNodeRuntime {}
 
+impl GenericAsset for DefaultNodeRuntime {
+    type Balance = u128;
+    type AssetId = u32;
+}
+
+impl Polkadex for DefaultNodeRuntime { }
+
+
 /// Concrete type definitions compatible with the node template.
 ///
 /// # Note
@@ -217,7 +225,7 @@ impl GenericAsset for NodeTemplateRuntime {
     type AssetId = u32;
 }
 
-impl Polkadex for NodeTemplateRuntime{ }
+impl Polkadex for NodeTemplateRuntime { }
 
 /// Concrete type definitions compatible with the node template, with the
 /// contracts pallet enabled.
